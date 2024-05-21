@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -12,9 +12,9 @@ interface RequestBody {
     userEmail: string;
 }
 
-export default async function handler(req: NextRequest): Promise<NextResponse> {
+export default async function handler(req: NextRequest) {
     if (req.method !== 'POST') {
-        return new NextResponse(JSON.stringify({ error: 'Method not allowed' }), {
+        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
             status: 405,
             headers: { 'Content-Type': 'application/json' },
         });
@@ -23,7 +23,7 @@ export default async function handler(req: NextRequest): Promise<NextResponse> {
     const { text, userEmail }: RequestBody = await req.json();
 
     if (!text || !userEmail) {
-        return new NextResponse(JSON.stringify({ error: 'Missing required fields' }), {
+        return new Response(JSON.stringify({ error: 'Missing required fields' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
         });
@@ -43,13 +43,13 @@ export default async function handler(req: NextRequest): Promise<NextResponse> {
             throw new Error('Failed to send email');
         }
 
-        return new NextResponse(JSON.stringify({ success: true, data }), {
+        return new Response(JSON.stringify({ success: true, data }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
     } catch (error) {
         console.log(error);
-        return new NextResponse(JSON.stringify({ error: (error as Error).message }), {
+        return new Response(JSON.stringify({ error: (error as Error).message }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },
         });
