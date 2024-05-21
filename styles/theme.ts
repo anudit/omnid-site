@@ -1,7 +1,7 @@
-import { extendTheme } from "@chakra-ui/react";
-import { Inter } from 'next/font/google'
+import { StyleFunctionProps, extendTheme } from "@chakra-ui/react";
+import { Fira_Code } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const fira = Fira_Code({ subsets: ['latin'] })
 
 interface ColorMode {
   colorMode: "light" | "dark";
@@ -14,13 +14,12 @@ const theme = extendTheme({
         background: colorMode === "dark" ? "#000000" : "white",
         color: colorMode === "dark" ? "white" : "#000000",
         scrollBehavior: 'smooth',
-        overflow: 'hidden',
       }
     }),
   },
   fonts: {
-    heading: `${inter.style.fontFamily}, Segoe UI`,
-    body: `Georgia, Serif`,
+    heading: `${fira.style.fontFamily}, Georgia, Serif`,
+    body: `${fira.style.fontFamily}, Georgia, Serif`,
   },
   fontWeights: {
     normal: 200,
@@ -28,10 +27,46 @@ const theme = extendTheme({
     bold: 900
   },
   config: {
-    cssVarPrefix: "ch",
+    cssVarPrefix: "om",
     initialColorMode: "dark",
     useSystemColorMode: false
   },
+  components: {
+    Menu: {
+      baseStyle: (props: StyleFunctionProps) => ({
+        list: {
+          bg: props.colorMode === "dark" ? "#111111db" : "white",
+          backdropFilter: "blur(24px)",
+          border: 'none'
+        },
+        item: {
+          bg: props.colorMode === 'dark' ? 'hsl(0deg 0% 12% / 0%)' : "hsl(0deg 0% 12% / 0%)",
+          _hover: {
+            bg: props.colorMode === 'dark' ? 'hsl(0deg 0% 12%)' : "hsl(0deg 0% 12% / 9%)",
+          },
+          _focus: {
+            bg: props.colorMode === 'dark' ? 'hsl(0deg 0% 12%)' : "hsl(0deg 0% 12% / 9%)",
+          },
+        },
+      }),
+    },
+    Modal: {
+      baseStyle: (props: StyleFunctionProps) => ({
+        dialog: {
+          bg: props.colorMode === "dark" ? "#111111db" : "white",
+          backdropFilter: "blur(24px)"
+        },
+      }),
+    },
+    Drawer: {
+      baseStyle: (props: StyleFunctionProps) => ({
+        dialog: {
+          bg: props.colorMode === "dark" ? "#111111db" : "white",
+          backdropFilter: "blur(24px)"
+        },
+      }),
+    },
+  }
 })
 
 export default theme;

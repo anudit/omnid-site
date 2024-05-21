@@ -1,1 +1,1 @@
-# manvi.eth
+# Omnid Site
