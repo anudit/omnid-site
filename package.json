@@ -1,37 +1,38 @@
 {
-  "name": "omnid-site",
+  "name": "manvi-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "outdated": "bunx npm-check-updates",
+    "dev": "next dev --port 8065 --turbo",
     "build": "next build",
     "start": "next start",
-    "fmt": "pnpm rome check . --apply-suggested && pnpm rome format . --write"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.4.3",
-    "@next/mdx": "^13.4.3",
-    "@types/node": "20.2.1",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "clsx": "^2.1.0",
-    "framer-motion": "^10.12.12",
-    "lucide-react": "^0.312.0",
-    "next": "13.4.3",
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@react-three/drei": "^9.105.4",
+    "@react-three/fiber": "^8.16.2",
+    "critters": "^0.0.22",
+    "framer-motion": "^11.1.7",
+    "gsap": "^3.12.5",
+    "next": "14.2.3",
+    "next-seo": "^6.5.0",
+    "preact": "^10.20.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-wrap-balancer": "^0.5.0",
-    "tailwind-merge": "^2.2.0",
-    "typescript": "5.0.4"
+    "three": "^0.163.0"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.9",
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.21",
-    "postcss-nesting": "^11.2.2",
-    "rome": "^11.0.0",
-    "tailwindcss": "^3.2.7",
-    "tailwindcss-debug-screens": "^2.2.1"
+    "@next/eslint-plugin-next": "14.2.3",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "eslint": "9.1.1",
+    "eslint-config-next": "14.2.3",
+    "typescript": "^5.4.5"
   }
 }
